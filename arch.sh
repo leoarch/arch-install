@@ -208,7 +208,7 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 # download script mode chroot
 echo -e "${_g}===> Baixando script para ser executado como chroot ...${_o}"
-wget https://raw.githubusercontent.com/leoarch/arch-installer/master/chroot.sh && chmod +x chroot.sh && mv chroot.sh /mnt
+wget https://raw.githubusercontent.com/leoarch/arch-install/master/chroot.sh && chmod +x chroot.sh && mv chroot.sh /mnt
 
 # run script
 echo -e "${_g}===> Executando script ...${_o}"
