@@ -65,7 +65,7 @@ if [ "$_efi" != "" ]; then
 	echo -e "default arch\ntimeout 5\n" > /boot/loader/loader.conf
 	echo -e "title Arch Linux\nlinux /vmlinuz-linux\ninitrd /initramfs-linux.img\noptions root=${_root} rw\n" > /boot/loader/entries/arch.conf
 else
-	echo -e "${_g}===> Instalando e Configurando o GRUB${_o}".5
+	echo -e "${_g}===> Instalando e Configurando o GRUB${_o}"
 	pacman -S grub --noconfirm
 	grub-install --target=i386-pc --recheck /dev/sda
 	cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
