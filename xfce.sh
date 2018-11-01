@@ -33,7 +33,7 @@ Iniciando a Instalação xfce
 STI
 
 # xorg
-echo -e "${_g}===> Instando xorg${_o}"; sleep 1
+echo -e "${_g}===> Instalando xorg${_o}"; sleep 1
 pacman -S xorg-xinit xorg-server xorg-drivers --noconfirm
 
 # xfce
