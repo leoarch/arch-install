@@ -104,7 +104,7 @@ if [ -n "$_swap" ]; then
 	export _swap
 fi
 
-echo -en "\n${_g} Informe o NÚMERO da partição ROOT${_o} (Digite o NÚMERO, ex: ${_r}3${_o} para sda2):${_w} "
+echo -en "\n${_g} Informe o NÚMERO da partição ROOT${_o} (Digite o NÚMERO, ex: ${_r}3${_o} para sda3):${_w} "
 read  _root
 
 if [ "$_root" == "" ]; then
