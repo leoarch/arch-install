@@ -45,7 +45,7 @@ pacman -S xorg-xinit xorg-server xorg-drivers --noconfirm
 
 # notebook
 if [[ "$_notebook" == @(s|S) ]]; then
-	echo -e "${_g}===> Instando xorg-drivers para notebook${_o}"; sleep 1
+	echo -e "${_g}===> Instando drivers para notebook${_o}"; sleep 1
 	pacman -S xf86-input-synaptics xf86-input-libinput wireless_tools wpa_supplicant wpa_actiond acpi acpid --noconfirm
 fi
 
@@ -56,8 +56,8 @@ if [[ "$_vm" == "s" ]]; then
 fi
 
 # gnome
-echo -e "${_g}===> Instalando básico GNOME${_o}"; sleep 1 # se necessário, altere como desejar
-pacman -S gnome-shell nautilus gnome-terminal gnome-tweak-tool gnome-control-center gdm --noconfirm
+echo -e "${_g}===> Instalando básico GNOME${_o}"; sleep 1 
+pacman -S gnome-shell nautilus gnome-terminal gnome-tweak-tool gnome-control-center gdm --noconfirm # se necessário, altere como desejar
 
 # gnome-extra
 if [[ "$_gextra" == "s" ]]; then
