@@ -49,9 +49,9 @@ echo -e "${_g}===> Instalando e configurando gerenciador de login lightdm${_o}";
 pacman -S lightdm lightdm-gtk-greeter --noconfirm
 sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
 sed -i '/^#greeter-hide-user=/s/#//' /etc/lightdm/lightdm.conf
-wget "https://raw.githubusercontent.com/leoarch/arch-install/master/lightdm-arch.jpg" -O /usr/share/pixmaps/lightdm-arch.jpg 2>/dev/null
+wget "https://raw.githubusercontent.com/leoarch/arch-install/master/bg-lightdm.jpg" -O /usr/share/pixmaps/bg-lightdm.jpg 2>/dev/null
 wget "https://raw.githubusercontent.com/leoarch/arch-install/master/keyboard" -O /etc/X11/xorg.conf.d/10-evdev.conf 2>/dev/null
-echo -e "[greeter]\nbackground=/usr/share/pixmaps/lightd-arch.jpg" > /etc/lightdm/lightdm-gtk-greeter.conf
+echo -e "[greeter]\nbackground=/usr/share/pixmaps/bg-lightdm.jpg" > /etc/lightdm/lightdm-gtk-greeter.conf
 
 # notebook
 if [[ "$_notebook" == "s" ]]; then
