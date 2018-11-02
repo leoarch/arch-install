@@ -73,6 +73,10 @@ pacman -S firefox firefox-i18n-pt-br flashplugin --noconfirm
 echo -e "${_g}===> Instalando utilitários de rede${_o}"; sleep 1
 pacman -S networkmanager network-manager-applet dialog --noconfirm
 
+# audio
+echo -e "${_g}===> Instalando utilitários de rede${_o}"; sleep 1
+pacman -S alsa-utils --noconfirm
+
 # mudar dhcpcd para dhclient (em um caso particular, meu roteador só funcionou com dhclient)
 # echo -e "${_g}===> Configurando dhcp para dhclient${_o}"; sleep 1
 # echo -e "[main]\ndhcp=dhclient" > /etc/NetworkManager/conf.d/dhclient.conf
@@ -82,7 +86,7 @@ localectl set-x11-keymap br abnt2
 
 # enable services
 echo -e "${_g}===> Habilitando NetworkManager e GDM${_o}"; sleep 1
-systemctl enable NetworkManager && systemctl enable gdm1
+systemctl enable NetworkManager && systemctl enable gdm
 
 cat <<EOI
 
