@@ -1,0 +1,109 @@
+#!/bin/bash
+
+# variaveis
+__A=$(echo -e "\e[34;1m");__O=$(echo -e "\e[m");_g="\e[32;1m";_o="\e[m";
+
+echo -en "\n${_g}Você está instalando em um notebook?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "
+read  _notebook
+
+if [[ "$_notebook" == @(S|s) ]]; then
+	_notebook="s"
+	export _notebook
+fi
+
+echo
+
+echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "
+read  _vm
+
+if [[ "$_vm" == @(S|s) ]]; then
+	_vm="s"
+	export _vm
+fi
+
+tput reset
+
+cat <<STI
+${__A}===========================
+Iniciando a Instalação xfce
+===========================${__O}
+STI
+
+echo -e "${_g}===> Instando xorg${_o}"; sleep 1
+pacman -S xorg-xinit xorg-server xorg-drivers --noconfirm
+
+# virtualbox
+if [ "$_vm" == "s" ]; then
+	echo -e "${_g}===> Guest Utils Virtuabox${_o}"; sleep 1
+	pacman -S virtualbox-guest-utils --noconfirm
+fi
+
+# notebook
+if [ "$_notebook" == "s" ]; then
+	echo -e "${_g}===> Instando drivers para notebook${_o}"; sleep 1
+	pacman -S xf86-input-synaptics xf86-input-libinput wireless_tools wpa_supplicant wpa_actiond acpi acpid --noconfirm
+fi
+
+echo -e "${_g}===> Instalando i3${_o}"; sleep 1
+pacman -S i3 --noconfirm
+
+echo -e "${_g}===> Instalando fontes e xterm${_o}"; sleep 1 # mude de acordo com suas necessidades
+pacman -S terminus-font ttf-dejavu xterm --noconfirm
+
+echo -e "${_g}===> Instalando utilitários${_o}"; sleep 1 # mude de acordo com suas necessidades
+pacman -S sudo dmenu nitrogen --noconfirm
+
+# lightdm
+echo -e "${_g}===> Instalando e configurando gerenciador de login lightdm${_o}"; sleep 1
+pacman -S lightdm lightdm-gtk-greeter --noconfirm
+sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
+sed -i '/^#greeter-hide-user=/s/#//' /etc/lightdm/lightdm.conf
+wget "https://raw.githubusercontent.com/leoarch/arch-install/master/bg-lightdm.jpg" -O /usr/share/pixmaps/bg-lightdm.jpg 2>/dev/null
+wget "https://raw.githubusercontent.com/leoarch/arch-install/master/keyboard" -O /etc/X11/xorg.conf.d/10-evdev.conf 2>/dev/null
+echo -e "[greeter]\nbackground=/usr/share/pixmaps/bg-lightdm.jpg" > /etc/lightdm/lightdm-gtk-greeter.conf
+
+# i3blocks
+echo -e "${_g}===> Habilitando i3blocks${_o}"; sleep 1
+sed -i 's/status_command i3status/status_command i3blocks\n\tfont pango:mono 9\n\tcolors {\n\t\tbackground #2F2F2F\n\t\tseparator #999999\n\t}/' ${HOME}/.config/i3/config
+
+# firefox
+echo -e "${_g}===> Instalando firefox${_o}"; sleep 1
+pacman -S firefox firefox-i18n-pt-br flashplugin --noconfirm
+
+# audio
+echo -e "${_g}===> Instalando audio${_o}"; sleep 1
+pacman -S alsa-utils pulseaudio pavucontrol paprefs --noconfirm
+
+# network
+echo -e "${_g}===> Instalando utilitários de rede${_o}"; sleep 1
+pacman -S networkmanager network-manager-applet --noconfirm
+
+echo -e "${_g}===> Configurando pra iniciar o i3${_o}"; sleep 1
+
+# startx i3
+cp /etc/X11/xinit/xinitrc ~/.xinitrc
+
+# comentando a linha exec xterm
+sed -i 's/exec xterm \-geometry 80x66+0+0 \-name login/\#exec xterm \-geometry 80x66+0+0 \-name login/' ~/.xinitrc
+
+# inserindo exec startxfce4
+echo 'exec i3' >> ~/.xinitrc
+
+# fix keyboard X11 br abnt2
+echo -e "${_g}===>locale X11 abnt2${_o}"
+localectl set-x11-keymap br abnt2
+
+# enable services
+echo -e "${_g}===> Habilitando serviços para serem iniciados com o sistema${_o}"
+systemctl enable lightdm
+systemctl enable NetworkManager
+
+# instalando yay
+# pacman -S git
+# cd ${HOME}
+# git clone https://aur.archlinux.org/yay.git --noconfirm
+# cd yay
+# makepkg -si
+
+
+
