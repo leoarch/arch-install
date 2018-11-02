@@ -51,7 +51,7 @@ echo -e "${_g}===> Instalando fontes e xterm${_o}"; sleep 1 # mude de acordo com
 pacman -S terminus-font ttf-dejavu xterm --noconfirm
 
 echo -e "${_g}===> Instalando utilitários${_o}"; sleep 1 # mude de acordo com suas necessidades
-pacman -S sudo dmenu nitrogen --noconfirm
+pacman -S sed sudo dmenu nitrogen --noconfirm
 
 # lightdm
 echo -e "${_g}===> Instalando e configurando gerenciador de login lightdm${_o}"; sleep 1
