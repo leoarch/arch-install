@@ -82,11 +82,7 @@ echo -e "${_g}===> Configurando pra iniciar o i3${_o}"; sleep 1
 
 # startx i3
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
-
-# comentando a linha exec xterm
 sed -i 's/exec xterm \-geometry 80x66+0+0 \-name login/\#exec xterm \-geometry 80x66+0+0 \-name login/' ~/.xinitrc
-
-# inserindo exec startxfce4
 echo 'exec i3' >> ~/.xinitrc
 
 # fix keyboard X11 br abnt2
