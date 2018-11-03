@@ -3,7 +3,7 @@
 # variaveis
 __A=$(echo -e "\e[34;1m");__O=$(echo -e "\e[m");_g="\e[32;1m";_o="\e[m";_w="\e[37;1m";
 
-echo -en "\n${_g}Você está instalando em um notebook?${_o} (Digite a letra {_g}s${_o} para sim ou {_g}n${_o} para não):${_w} "
+echo -en "\n${_g}Você está instalando em um notebook?${_o} (Digite a letra ${_g}s${_o} para sim ou ${_g}n${_o} para não):${_w} "
 read  _notebook
 
 if [[ "$_notebook" == @(S|s) ]]; then
@@ -13,7 +13,7 @@ fi
 
 echo
 
-echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra {_g}s${_o} para sim ou {_g}n${_o} para não):${_w} "
+echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra ${_g}s${_o} para sim ou ${_g}n${_o} para não):${_w} "
 read  _vm
 
 if [[ "$_vm" == @(S|s) ]]; then
