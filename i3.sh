@@ -64,10 +64,6 @@ wget "https://raw.githubusercontent.com/leoarch/arch-install/master/bg-lightdm.j
 wget "https://raw.githubusercontent.com/leoarch/arch-install/master/keyboard" -O /etc/X11/xorg.conf.d/10-evdev.conf 2>/dev/null
 echo -e "[greeter]\nbackground=/usr/share/pixmaps/bg-lightdm.jpg" > /etc/lightdm/lightdm-gtk-greeter.conf
 
-# i3blocks
-echo -e "${_g}===> Habilitando i3blocks${_o}"; sleep 1
-sed -i 's/status_command i3status/status_command i3blocks\n\tfont pango:mono 9\n\tcolors {\n\t\tbackground #2F2F2F\n\t\tseparator #999999\n\t}/' ${HOME}/.config/i3/config
-
 # firefox
 echo -e "${_g}===> Instalando firefox${_o}"; sleep 1
 pacman -S firefox firefox-i18n-pt-br flashplugin --noconfirm
