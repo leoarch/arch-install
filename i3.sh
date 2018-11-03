@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # variaveis
-__A=$(echo -e "\e[34;1m");__O=$(echo -e "\e[m");_g="\e[32;1m";_o="\e[m";
+__A=$(echo -e "\e[34;1m");__O=$(echo -e "\e[m");_g="\e[32;1m";_o="\e[m";;_w="\e[37;1m";
 
-echo -en "\n${_g}Você está instalando em um notebook?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "
+echo -en "\n${_g}Você está instalando em um notebook?${_o} (Digite a letra {_g}s${_o} para sim ou {_g}n${_o} para não):${_w} "
 read  _notebook
 
 if [[ "$_notebook" == @(S|s) ]]; then
@@ -13,7 +13,7 @@ fi
 
 echo
 
-echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "
+echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra {_g}s${_o} para sim ou {_g}n${_o} para não):${_w} "
 read  _vm
 
 if [[ "$_vm" == @(S|s) ]]; then
@@ -24,9 +24,9 @@ fi
 tput reset
 
 cat <<STI
-${__A}===========================
-Iniciando a Instalação xfce
-===========================${__O}
+${__A}=========================
+Iniciando a Instalação i3
+=========================${__O}
 STI
 
 echo -e "${_g}===> Instando xorg${_o}"; sleep 1
@@ -51,7 +51,7 @@ echo -e "${_g}===> Instalando fontes e xterm${_o}"; sleep 1 # mude de acordo com
 pacman -S terminus-font ttf-dejavu xterm --noconfirm
 
 echo -e "${_g}===> Instalando utilitários${_o}"; sleep 1 # mude de acordo com suas necessidades
-pacman -S sed sudo dmenu nitrogen --noconfirm
+pacman -S sudo dmenu nitrogen --noconfirm
 
 # lightdm
 echo -e "${_g}===> Instalando e configurando gerenciador de login lightdm${_o}"; sleep 1
