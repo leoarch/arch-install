@@ -16,6 +16,8 @@ echo
 echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra ${_g}s${_o} para sim ou ${_g}n${_o} para não):${_w} "
 read  _vm
 
+
+
 if [[ "$_vm" == @(S|s) ]]; then
 	_vm="s"
 	export _vm
