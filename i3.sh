@@ -92,12 +92,5 @@ echo -e "${_g}===> Habilitando serviços para serem iniciados com o sistema${_o}
 systemctl enable lightdm
 systemctl enable NetworkManager
 
-# instalando yay
-# pacman -S git
-# cd ${HOME}
-# git clone https://aur.archlinux.org/yay.git --noconfirm
-# cd yay
-# makepkg -si
-
 
 
