@@ -50,7 +50,7 @@ echo -e "${_g}===> Instalando i3${_o}"; sleep 1
 pacman -S i3 --noconfirm
 
 echo -e "${_g}===> Instalando fontes e xterm${_o}"; sleep 1 # mude de acordo com suas necessidades
-pacman -S terminus-font ttf-dejavu xterm --noconfirm
+pacman -S terminus-font ttf-dejavu termite --noconfirm
 
 echo -e "${_g}===> Instalando utilitários${_o}"; sleep 1 # mude de acordo com suas necessidades
 pacman -S sudo dmenu nitrogen --noconfirm
@@ -91,6 +91,3 @@ localectl set-x11-keymap br abnt2
 echo -e "${_g}===> Habilitando serviços para serem iniciados com o sistema${_o}"
 systemctl enable lightdm
 systemctl enable NetworkManager
-
-
-
