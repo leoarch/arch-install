@@ -16,8 +16,6 @@ echo
 echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra ${_g}s${_o} para sim ou ${_g}n${_o} para não):${_w} "
 read  _vm
 
-
-
 if [[ "$_vm" == @(S|s) ]]; then
 	_vm="s"
 	export _vm
@@ -49,24 +47,12 @@ fi
 echo -e "${_g}===> Instalando i3${_o}"; sleep 1
 pacman -S i3 --noconfirm
 
-echo -e "${_g}===> Instalando fontes e xterm${_o}"; sleep 1 # mude de acordo com suas necessidades
-pacman -S terminus-font ttf-dejavu xterm --noconfirm
-
-echo -e "${_g}===> Instalando utilitários${_o}"; sleep 1 # mude de acordo com suas necessidades
-pacman -S sudo dmenu nitrogen --noconfirm
-
-# lightdm
-echo -e "${_g}===> Instalando e configurando gerenciador de login lightdm${_o}"; sleep 1
-pacman -S lightdm lightdm-gtk-greeter --noconfirm
-sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
-sed -i '/^#greeter-hide-user=/s/#//' /etc/lightdm/lightdm.conf
-wget "https://raw.githubusercontent.com/leoarch/arch-install/master/bg-lightdm.jpg" -O /usr/share/pixmaps/bg-lightdm.jpg 2>/dev/null
-wget "https://raw.githubusercontent.com/leoarch/arch-install/master/keyboard" -O /etc/X11/xorg.conf.d/10-evdev.conf 2>/dev/null
-echo -e "[greeter]\nbackground=/usr/share/pixmaps/bg-lightdm.jpg" > /etc/lightdm/lightdm-gtk-greeter.conf
+echo -e "${_g}===> Instalando fontes e terminal${_o}"; sleep 1 # mude de acordo com suas necessidades
+pacman -S terminus-font ttf-dejavu termite --noconfirm
 
 # firefox
-echo -e "${_g}===> Instalando firefox${_o}"; sleep 1
-pacman -S firefox firefox-i18n-pt-br flashplugin --noconfirm
+# echo -e "${_g}===> Instalando firefox${_o}"; sleep 1
+# pacman -S firefox firefox-i18n-pt-br flashplugin --noconfirm
 
 # audio
 echo -e "${_g}===> Instalando audio${_o}"; sleep 1
@@ -76,16 +62,22 @@ pacman -S alsa-utils pulseaudio pavucontrol paprefs --noconfirm
 echo -e "${_g}===> Instalando utilitários de rede${_o}"; sleep 1
 pacman -S networkmanager network-manager-applet --noconfirm
 
+# iniciar i3
 echo -e "${_g}===> Configurando pra iniciar o i3${_o}"; sleep 1
-
-# startx i3
-cp /etc/X11/xinit/xinitrc ~/.xinitrc
-sed -i 's/exec xterm \-geometry 80x66+0+0 \-name login/\#exec xterm \-geometry 80x66+0+0 \-name login/' ~/.xinitrc
-echo 'exec i3' >> ~/.xinitrc
+echo 'exec i3' > ~/.xinitrc
 
 # fix keyboard X11 br abnt2
 echo -e "${_g}===>locale X11 abnt2${_o}"
 localectl set-x11-keymap br abnt2
+
+# lightdm
+echo -e "${_g}===> Instalando e configurando gerenciador de login lightdm${_o}"; sleep 1
+pacman -S lightdm lightdm-gtk-greeter --noconfirm
+sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
+sed -i '/^#greeter-hide-user=/s/#//' /etc/lightdm/lightdm.conf
+wget "https://raw.githubusercontent.com/leoarch/arch-install/master/bg-lightdm.jpg" -O /usr/share/pixmaps/bg-lightdm.jpg 2>/dev/null
+wget "https://raw.githubusercontent.com/leoarch/arch-install/master/keyboard" -O /etc/X11/xorg.conf.d/10-evdev.conf 2>/dev/null
+echo -e "[greeter]\nbackground=/usr/share/pixmaps/bg-lightdm.jpg" > /etc/lightdm/lightdm-gtk-greeter.conf
 
 # enable services
 echo -e "${_g}===> Habilitando serviços para serem iniciados com o sistema${_o}"
