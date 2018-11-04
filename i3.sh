@@ -51,8 +51,8 @@ echo -e "${_g}===> Instalando fontes e terminal${_o}"; sleep 1 # mude de acordo 
 pacman -S terminus-font ttf-dejavu termite --noconfirm
 
 # firefox
-# echo -e "${_g}===> Instalando firefox${_o}"; sleep 1
-# pacman -S firefox firefox-i18n-pt-br flashplugin --noconfirm
+echo -e "${_g}===> Instalando firefox${_o}"; sleep 1
+pacman -S firefox firefox-i18n-pt-br flashplugin --noconfirm
 
 # audio
 echo -e "${_g}===> Instalando audio${_o}"; sleep 1
