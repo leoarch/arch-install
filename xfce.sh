@@ -2,22 +2,20 @@
 
 ### INSTALANDO XFCE ###
 
-__A=$(echo -e "\e[34;1m");__O=$(echo -e "\e[m");_g="\e[32;1m";_o="\e[m";
+__A=$(echo -e "\e[34;1m");__O=$(echo -e "\e[m");_g="\e[32;1m";_o="\e[m";;_w="\e[37;1m";
 
-custom="n"
+[ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
 
-echo -en "\n${_g}Você está instalando em um notebook?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "
-read  _vm
+echo -en "\n${_g}Você está instalando em um notebook?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "; read  _vm
 
-if [[ "$_notebook" == @(S|s) ]]; then
+if [[ "$_vm" == @(S|s) ]]; then
 	_notebook="s"
 	export _notebook
 fi
 
 echo
 
-echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "
-read  _vm
+echo -en "\n${_g}Você está instalando em uma VM?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "; read  _vm
 
 if [[ "$_vm" == @(S|s) ]]; then
 	virtualbox="s"
