@@ -4,7 +4,7 @@
 
 __A=$(echo -e "\e[34;1m");__O=$(echo -e "\e[m");_g="\e[32;1m";_o="\e[m";;_w="\e[37;1m";
 
-[ "$EUID" -eq 0 ] && echo "É necessário rodar o script como usuário normal, não como root." && exit 1
+[ ! "$EUID" -eq 0 ] && echo "Execute o script como root! Ou use sudo ./xfce.sh" && exit 1
 
 echo -en "\n${_g}Você está instalando em um notebook?${_o} (Digite a letra 's' para sim ou 'n' para não):${_w} "; read  _vm
 
